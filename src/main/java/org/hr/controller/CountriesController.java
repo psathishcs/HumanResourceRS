@@ -6,6 +6,7 @@ import org.hr.entity.Countries;
 import org.hr.entity.Departments;
 import org.hr.repository.CountriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
+@EnableEurekaClient
 @RestController
 public class CountriesController {
 	@Autowired
