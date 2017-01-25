@@ -1,8 +1,12 @@
 package org.hr.controller;
 
 import java.util.List;
+
+import org.hr.HumanResourceApplication;
 import org.hr.entity.Employees;
 import org.hr.repository.EmployeesRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class EmployeesController {
+	private static Logger log = LoggerFactory.getLogger(EmployeesController.class);
 	@Autowired
 	private EmployeesRepository employeesRepository;
 	
@@ -31,6 +36,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Employees> getAllEmployees(){
+		log.info("getAllEmployees");
 		return employeesRepository.getAll();
 	}
 	
@@ -46,7 +52,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Employees getEmployeesByID(@PathVariable Long employeesID){
-		System.out.println("inside the controller");
+		log.info("inside the controller");
 		return employeesRepository.getByID(employeesID);
 	}
 	
@@ -62,7 +68,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Employees getEmployeesByEmail(@PathVariable String email){
-		System.out.println("inside the controller");
+		log.info("getEmployeesByEmail");
 		return employeesRepository.getByEmail(email);
 	}
 	
@@ -78,7 +84,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Employees> getEmployeesByDepartmentID(@PathVariable Long departmentID){
-		System.out.println("inside the controller");
+		log.info("inside the controller");
 		return employeesRepository.getByDepartmentID(departmentID);
 	}
 	
@@ -94,7 +100,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Employees> getEmployeesByManagerID(@PathVariable Long managerID){
-		System.out.println("inside the controller");
+		log.info("inside the controller");
 		return employeesRepository.getByManagerID(managerID);
 	}
 	
@@ -110,6 +116,7 @@ public class EmployeesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Employees> getEmployeesByFirstName(@PathVariable String firstName){
+		log.info("getEmployeesByFirstName");
 		return employeesRepository.getByFirstName(firstName);
 	}
 

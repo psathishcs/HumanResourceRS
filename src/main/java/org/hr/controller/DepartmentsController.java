@@ -6,6 +6,8 @@ import java.util.List;
 import org.hr.entity.Departments;
 import org.hr.entity.Employees;
 import org.hr.repository.DepartmentsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class DepartmentsController {
+	private static Logger log = LoggerFactory.getLogger(DepartmentsController.class);
 	@Autowired
 	private DepartmentsRepository departmentsRepository;
 	
@@ -32,6 +35,7 @@ public class DepartmentsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Departments> getAllDepartments(){
+		log.info("getAllDepartments");
 		return departmentsRepository.getAll();
 	}
 	
@@ -45,6 +49,7 @@ public class DepartmentsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Departments getDepartmentsByID(@PathVariable Integer departmentID){
+		log.info("getDepartmentsByID");
 		return departmentsRepository.getByID(departmentID);
 	}
 	
@@ -58,6 +63,7 @@ public class DepartmentsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Departments> getDepartmentsByLocationID(@PathVariable Integer locationID){
+		log.info("getDepartmentsByLocationID");
 		return departmentsRepository.getByLocationID(locationID);
 	}
 

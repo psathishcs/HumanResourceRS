@@ -3,6 +3,8 @@ package org.hr.controller;
 import java.util.List;
 import org.hr.entity.Locations;
 import org.hr.repository.LocationsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class LocationsController {
+	private static Logger log = LoggerFactory.getLogger(LocationsController.class);
 	@Autowired
 	private LocationsRepository repository;
 	
@@ -31,6 +34,7 @@ public class LocationsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Locations> getAllLocations(){
+		log.info("getAllLocations");
 		return repository.getAllLocations();
 	}
 	
@@ -46,6 +50,7 @@ public class LocationsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Locations getLocationsByID(@PathVariable(value="locationID")Integer locationID){
+		log.info("getLocationsByID");
 		return repository.getLocationsByID(locationID);
 	}
 	
@@ -61,6 +66,7 @@ public class LocationsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Locations> getLocationsByCountryID(@PathVariable(value="countryID")String countryID){
+		log.info("getLocationsByCountryID");
 		return repository.getLocationsByCountryID(countryID);
 	}
 

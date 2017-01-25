@@ -6,6 +6,8 @@ import org.hr.entity.Locations;
 import org.hr.entity.Regions;
 import org.hr.repository.LocationsRepository;
 import org.hr.repository.RegionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class RegionsController {
+	
+	private static Logger log = LoggerFactory.getLogger(RegionsController.class);
 	@Autowired
 	private RegionRepository repository;
 	
@@ -34,6 +38,7 @@ public class RegionsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Regions> getAllRegions(){
+		log.info("getAllRegions");
 		return repository.getAllRegions();
 	}
 	
@@ -49,6 +54,7 @@ public class RegionsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Regions getLocationsByID(@PathVariable(value="regionID")Integer regionID){
+		log.info("getLocationsByID");
 		return repository.getRegionsByID(regionID);
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.hr.entity.Employees;
 import org.hr.entity.JobHistory;
 import org.hr.repository.JobHistoryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class JobHistoryController {
+	private static Logger log = LoggerFactory.getLogger(JobHistoryController.class);
 	@Autowired
 	private JobHistoryRepository jobHistoryRepository;
 	
@@ -33,6 +36,7 @@ public class JobHistoryController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<JobHistory> getAllJobHistory(){
+		log.info("getAllJobHistory");
 		return jobHistoryRepository.getAll();
 	}
 	
@@ -48,6 +52,7 @@ public class JobHistoryController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<JobHistory> getJobHistoryByEmployeeID(@PathVariable Long employeeID){
+		log.info("getJobHistoryByEmployeeID");
 		return jobHistoryRepository.getJobHistoryByEmployeeID(employeeID);
 	}
 	
@@ -63,6 +68,7 @@ public class JobHistoryController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<JobHistory> getJobHistoryByDepartmentID(@PathVariable Integer departmentID){
+		log.info("getJobHistoryByDepartmentID");
 		return jobHistoryRepository.getJobHistoryByDepartmentID(departmentID);
 	}
 	
@@ -78,6 +84,7 @@ public class JobHistoryController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<JobHistory> getJobHistoryByJobID(@PathVariable String jobID){
+		log.info("getJobHistoryByJobID");
 		return jobHistoryRepository.getJobHistoryByJobID(jobID);
 	}
 

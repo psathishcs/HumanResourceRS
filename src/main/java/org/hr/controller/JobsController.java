@@ -5,6 +5,8 @@ import java.util.List;
 import org.hr.entity.Employees;
 import org.hr.entity.Jobs;
 import org.hr.repository.JobsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class JobsController {
-	
+	private static Logger log = LoggerFactory.getLogger(JobsController.class);
 	@Autowired
 	private JobsRepository repository;
 	
@@ -35,6 +37,7 @@ public class JobsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Jobs> getAllJobs(){
+		log.info("getAllJobs");
 		return repository.getAll();
 	}
 	
@@ -50,6 +53,7 @@ public class JobsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Jobs getJobsByID(@PathVariable(value="jobID")String jobID){
+		log.info("getJobsByID");
 		return repository.getJobsByID(jobID);
 	}
 	
@@ -65,6 +69,7 @@ public class JobsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Jobs> getJobsWithSalaryGreaterThan(@PathVariable(value="minSalary")Double minSalary){
+		log.info("getJobsWithSalaryGreaterThan");
 		return repository.getJobsWithSalaryGreaterThan(minSalary);
 	}
 	
@@ -80,6 +85,7 @@ public class JobsController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Jobs> getJobsWithSalaryLessThan(@PathVariable(value="maxSalary")Double maxSalary){
+		log.info("getJobsWithSalaryLessThan");
 		return repository.getJobsWithSalaryLessThan(maxSalary);
 	}
 

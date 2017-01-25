@@ -5,6 +5,8 @@ import java.util.List;
 import org.hr.entity.Countries;
 import org.hr.entity.Departments;
 import org.hr.repository.CountriesRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class CountriesController {
+	private static Logger log = LoggerFactory.getLogger(CountriesController.class);
 	@Autowired
 	private CountriesRepository repository;
 
@@ -33,6 +36,7 @@ public class CountriesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Countries> getAllCountries(){
+		log.info("getAllCountries");
 		return repository.getAll();
 	}
 	
@@ -48,6 +52,7 @@ public class CountriesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public Countries getByCountriesByID(@PathVariable String countryID){
+		log.info("getByCountriesByID");
 		return repository.getByCountriesByID(countryID);
 	}
 	
@@ -63,6 +68,7 @@ public class CountriesController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Failed")})
 	public List<Countries> getByCountriesByRegionID(@PathVariable Integer regionID ){
+		log.info("getByCountriesByRegionID");
 		return repository.getByCountriesByRegionID(regionID);
 	}
 	
