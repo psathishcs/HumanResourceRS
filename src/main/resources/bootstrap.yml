@@ -3,7 +3,7 @@ spring:
   application:
     name: HumanResourceRS
   profiles:
-    active: dockerV3
+    active: dockerV1
   cloud:
     config:
       uri: http://cloudconfigservice:8888
